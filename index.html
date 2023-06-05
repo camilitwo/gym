@@ -2,31 +2,32 @@
 <html>
 <head>
   <title>Rutina de Ejercicios</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- Material Design icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
-    h1 {
-      text-align: center;
-    }
-    ul {
-      list-style-type: none;
-    }
-    .exercise {
-      padding: 10px;
-      background-color: #f2f2f2;
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-      cursor: pointer;
-    }
     .completed {
       text-decoration: line-through;
-      opacity: 0.5;
+    }
+    .exercise-label {
+      display: flex;
+      align-items: center;
+    }
+    .exercise-checkbox {
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Rutina de Ejercicios</h1>
+  <div class="container py-5">
+    <h1 class="text-center">Rutina de Ejercicios</h1>
+    
+    <div id="rutina-container" class="mt-5"></div>
+  </div>
   
-  <div id="rutina-container"></div>
-  
+  <!-- Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
     var rutina = {
       "rutina": [
@@ -83,11 +84,22 @@
     
     function createExerciseElement(exerciseName) {
       var exercise = document.createElement("li");
-      exercise.className = "exercise";
-      exercise.textContent = exerciseName;
+      exercise.className = "list-group-item";
       
-      exercise.addEventListener("click", function() {
-        exercise.classList.toggle("completed");
+      var label = document.createElement("label");
+      label.className = "exercise-label";
+      
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "exercise-checkbox";
+      
+      label.appendChild(checkbox);
+      label.innerHTML += exerciseName;
+      
+      exercise.appendChild(label);
+      
+      checkbox.addEventListener("change", function() {
+        exercise.classList.toggle("completed", checkbox.checked);
       });
       
       return exercise;
@@ -103,17 +115,23 @@
         var ejercicios = rutina.rutina[i].ejercicios;
         
         if (dia.toLowerCase() === today) {
-          var diaElement = document.createElement("div");
-          diaElement.innerHTML = "<h2>" + dia + "</h2>";
+          var dayElement = document.createElement("div");
+          dayElement.className = "card";
           
-          var ejerciciosList = document.createElement("ul");
+          var dayTitle = document.createElement("div");
+          dayTitle.className = "card-header";
+          dayTitle.textContent = dia;
+          
+          var exerciseList = document.createElement("ul");
+          exerciseList.className = "list-group list-group-flush";
           for (var j = 0; j < ejercicios.length; j++) {
-            var ejercicio = createExerciseElement(ejercicios[j]);
-            ejerciciosList.appendChild(ejercicio);
+            var exercise = createExerciseElement(ejercicios[j]);
+            exerciseList.appendChild(exercise);
           }
           
-          diaElement.appendChild(ejerciciosList);
-          rutinaContainer.appendChild(diaElement);
+          dayElement.appendChild(dayTitle);
+          dayElement.appendChild(exerciseList);
+          rutinaContainer.appendChild(dayElement);
           
           break;
         }
