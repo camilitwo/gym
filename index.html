@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rutina de Ejercicios</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Material Design icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <style>
+    /* Estilos comunes */
     .completed {
       text-decoration: line-through;
     }
@@ -20,19 +22,47 @@
     .card {
       margin-bottom: 20px;
     }
-    @media (max-width: 576px) {
-      .card {
-        width: 100%;
-      }
+    /* Estilos para el modo claro */
+    body.light-mode {
+      background-color: #f8f9fa;
+      color: #000;
+    }
+    /* Estilos para el modo oscuro */
+    body.dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+    .card.dark-mode {
+      background-color: #444;
+      color: #fff;
+    }
+    /* Estilos para el pie de página */
+    footer {
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      text-align: center;
+    }
+    .footer-text {
+      margin: 0;
+      font-size: 14px;
+      color: #6c757d;
+    }
+    .footer-link {
+      color: #6c757d;
     }
   </style>
 </head>
-<body>
+<body class="light-mode">
   <div class="container py-5">
     <h1 class="text-center">Rutina de Ejercicios</h1>
     
     <div id="rutina-container" class="mt-5"></div>
   </div>
+  
+  <!-- Footer -->
+  <footer>
+    <p class="footer-text">Diseño por <a class="footer-link" href="https://www.example.com" target="_blank">camilitwo</a></p>
+  </footer>
   
   <!-- Bootstrap JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -147,6 +177,11 @@
     }
     
     generateRoutine();
+    
+    function toggleDarkMode() {
+      var body = document.body;
+      body.classList.toggle("dark-mode");
+    }
   </script>
 </body>
 </html>
