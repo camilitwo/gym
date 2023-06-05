@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rutina de Ejercicios</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -21,6 +20,11 @@
     }
     .card {
       margin-bottom: 20px;
+    }
+    @media (max-width: 576px) {
+      .card {
+        width: 100%;
+      }
     }
     /* Estilos para el modo claro */
     body.light-mode {
@@ -50,20 +54,32 @@
     .footer-link {
       color: #6c757d;
     }
+    /* Estilos para el navbar */
+    .navbar-logo {
+      height: 30px;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body class="light-mode">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="https://cdn.worldvectorlogo.com/logos/drip-gym.svg" alt="Logo" class="navbar-logo">
+      Rutina de Ejercicios
+    </a>
+  </nav>
+
+  <!-- Resto del contenido de la página -->
   <div class="container py-5">
     <h1 class="text-center">Rutina de Ejercicios</h1>
-    
     <div id="rutina-container" class="mt-5"></div>
   </div>
-  
+
   <!-- Footer -->
   <footer>
     <p class="footer-text">Diseño por <a class="footer-link" href="https://www.example.com" target="_blank">camilitwo</a></p>
   </footer>
-  
+
   <!-- Bootstrap JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
@@ -143,16 +159,17 @@
       return exercise;
     }
     
-    function generateRoutine() {
+    function generateRoutine(selectedDay) {
       var rutinaContainer = document.getElementById("rutina-container");
       
       var today = new Date().toLocaleDateString('es-ES', { weekday: 'long' });
+      selectedDay = selectedDay || today;
       
       for (var i = 0; i < rutina.rutina.length; i++) {
         var dia = rutina.rutina[i].dia;
         var ejercicios = rutina.rutina[i].ejercicios;
         
-        if (dia.toLowerCase() === today) {
+        if (dia.toLowerCase() === selectedDay.toLowerCase()) {
           var dayElement = document.createElement("div");
           dayElement.className = "card";
           
@@ -174,6 +191,14 @@
           break;
         }
       }
+      
+      var diaSelector = document.getElementById("dia-selector");
+      diaSelector.value = selectedDay;
+      
+      diaSelector.addEventListener("change", function() {
+        rutinaContainer.innerHTML = "";
+        generateRoutine(diaSelector.value);
+      });
     }
     
     generateRoutine();
