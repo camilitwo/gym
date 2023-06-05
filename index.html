@@ -54,32 +54,31 @@
     .footer-link {
       color: #6c757d;
     }
-    /* Estilos para el navbar */
-    .navbar-logo {
-      height: 30px;
-      margin-right: 10px;
-    }
   </style>
 </head>
 <body class="light-mode">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="https://cdn.worldvectorlogo.com/logos/drip-gym.svg" alt="Logo" class="navbar-logo">
-      Rutina de Ejercicios
-    </a>
-  </nav>
-
-  <!-- Resto del contenido de la página -->
   <div class="container py-5">
     <h1 class="text-center">Rutina de Ejercicios</h1>
+    
     <div id="rutina-container" class="mt-5"></div>
+    
+    <div class="form-group">
+      <label for="dia-selector">Seleccionar día:</label>
+      <select id="dia-selector" class="form-control">
+        <option value="Lunes">Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miércoles">Miércoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+      </select>
+    </div>
   </div>
-
+  
   <!-- Footer -->
   <footer>
     <p class="footer-text">Diseño por <a class="footer-link" href="https://www.example.com" target="_blank">camilitwo</a></p>
   </footer>
-
+  
   <!-- Bootstrap JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
