@@ -32,6 +32,9 @@
       background-color: #f8f9fa;
       color: #000;
     }
+    .light-mode .card {
+      background-color: #fff;
+    }
     /* Estilos para el modo oscuro */
     body.dark-mode {
       background-color: #333;
@@ -55,9 +58,27 @@
     .footer-link {
       color: #6c757d;
     }
+    @media (max-width: 576px) {
+      .card {
+        width: 100%;
+      }
+    }
+    /* Estilos para el navbar */
+    .navbar-logo {
+      height: 30px;
+      margin-right: 10px;
+    }
+  </style>
+  
   </style>
 </head>
 <body class="light-mode">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="https://cdn.worldvectorlogo.com/logos/drip-gym.svg" alt="Logo" class="navbar-logo">
+          Rutina de Ejercicios
+        </a>
+      </nav>
   <div class="container py-5">
     <h1 class="text-center">Rutina de Ejercicios</h1>
     
@@ -207,6 +228,8 @@
       var body = document.body;
       body.classList.toggle("dark-mode");
     }
+    
   </script>
+  
 </body>
 </html>
