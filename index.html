@@ -7,70 +7,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <!-- Material Design icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <style>
-    /* Estilos comunes */
-    .completed {
-      text-decoration: line-through;
-    }
-    .exercise-label {
-      display: flex;
-      align-items: center;
-    }
-    .exercise-checkbox {
-      margin-right: 10px;
-    }
-    .card {
-      margin-bottom: 20px;
-    }
-    @media (max-width: 576px) {
-      .card {
-        width: 100%;
-      }
-    }
-    /* Estilos para el modo claro */
-    body.light-mode {
-      background-color: #f8f9fa;
-      color: #000;
-    }
-    .light-mode .card {
-      background-color: #fff;
-    }
-    /* Estilos para el modo oscuro */
-    body.dark-mode {
-      background-color: #333;
-      color: #fff;
-    }
-    .card.dark-mode {
-      background-color: #444;
-      color: #fff;
-    }
-    /* Estilos para el pie de página */
-    footer {
-      background-color: #f8f9fa;
-      padding: 20px 0;
-      text-align: center;
-    }
-    .footer-text {
-      margin: 0;
-      font-size: 14px;
-      color: #6c757d;
-    }
-    .footer-link {
-      color: #6c757d;
-    }
-    @media (max-width: 576px) {
-      .card {
-        width: 100%;
-      }
-    }
-    /* Estilos para el navbar */
-    .navbar-logo {
-      height: 30px;
-      margin-right: 10px;
-    }
-  </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
   
-  </style>
 </head>
 <body class="light-mode">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,14 +19,12 @@
         </a>
       </nav>
   <div class="container py-5">
-    <h1 class="text-center">Rutina de Ejercicios</h1>
     
     <div id="rutina-container" class="mt-5"></div>
     
     <div class="form-group">
       <label for="dia-selector">Seleccionar día:</label>
       <select id="dia-selector" class="form-control">
-        <option value="" selected>Seleccionar...</option>
         <option value="Lunes">Lunes</option>
         <option value="Martes">Martes</option>
         <option value="Miércoles">Miércoles</option>
@@ -99,138 +36,17 @@
   
   <!-- Footer -->
   <footer>
-    <p class="footer-text">Diseño por <a class="footer-link" href="https://www.example.com" target="_blank">camilitwo</a></p>
+    <div class="footer-container">
+      <p class="footer-text">Hecho por <a class="footer-link" href="https://github.com/camilitwo">camilitwo</p>
+        <p class="footer-text">© 2023</p>
+    </div>
+
   </footer>
   
   <!-- Bootstrap JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script>
-    var rutina = {
-      "rutina": [
-        {
-          "dia": "Lunes",
-          "ejercicios": [
-            "Sentadillas: 4 series de 8-10 repeticiones.",
-            "Peso muerto: 4 series de 8-10 repeticiones.",
-            "Zancadas: 3 series de 10 repeticiones por pierna.",
-            "Extensión de piernas: 3 series de 12 repeticiones.",
-            "Curl de piernas: 3 series de 12 repeticiones.",
-            "Elevación de talones: 3 series de 15 repeticiones."
-          ]
-        },
-        {
-          "dia": "Martes",
-          "ejercicios": [
-            "Dominadas: 4 series de 8-10 repeticiones.",
-            "Remo con barra: 4 series de 8-10 repeticiones.",
-            "Remo con mancuernas: 3 series de 10 repeticiones.",
-            "Curl de bíceps con barra: 3 series de 10-12 repeticiones.",
-            "Curl de bíceps martillo: 3 series de 10-12 repeticiones."
-          ]
-        },
-        {
-          "dia": "Miércoles",
-          "ejercicios": [
-            "Descanso o actividad de baja intensidad"
-          ]
-        },
-        {
-          "dia": "Jueves",
-          "ejercicios": [
-            "Fondos en paralelas: 3 series de 10-12 repeticiones.",
-            "Press de banca: 4 series de 8-10 repeticiones.",
-            "Press inclinado con mancuernas: 4 series de 8-10 repeticiones.",
-            "Aperturas con mancuernas: 3 series de 10 repeticiones.",
-            "Extensiones de tríceps con polea: 3 series de 10-12 repeticiones."
-          ]
-        },
-        {
-          "dia": "Viernes",
-          "ejercicios": [
-            "Plancha: 3 series de 30-60 segundos.",
-            "Crunch abdominal: 3 series de 15-20 repeticiones.",
-            "Press militar con barra: 4 series de 8-10 repeticiones.",
-            "Elevaciones laterales con mancuernas: 3 series de 10 repeticiones.",
-            "Pájaros: 3 series de 10 repeticiones.",
-            "Encogimientos de hombros: 3 series de 12 repeticiones."
-          ]
-        }
-      ]
-    };
-    
-    function createExerciseElement(exerciseName) {
-      var exercise = document.createElement("li");
-      exercise.className = "list-group-item";
-      
-      var label = document.createElement("label");
-      label.className = "exercise-label";
-      
-      var checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.className = "exercise-checkbox";
-      
-      label.appendChild(checkbox);
-      label.innerHTML += exerciseName;
-      
-      exercise.appendChild(label);
-      
-      checkbox.addEventListener("change", function() {
-        exercise.classList.toggle("completed", checkbox.checked);
-      });
-      
-      return exercise;
-    }
-    
-    function generateRoutine(selectedDay) {
-      var rutinaContainer = document.getElementById("rutina-container");
-      
-      var today = new Date().toLocaleDateString('es-ES', { weekday: 'long' });
-      selectedDay = selectedDay || today;
-      
-      for (var i = 0; i < rutina.rutina.length; i++) {
-        var dia = rutina.rutina[i].dia;
-        var ejercicios = rutina.rutina[i].ejercicios;
-        
-        if (dia.toLowerCase() === selectedDay.toLowerCase()) {
-          var dayElement = document.createElement("div");
-          dayElement.className = "card";
-          
-          var dayTitle = document.createElement("div");
-          dayTitle.className = "card-header";
-          dayTitle.textContent = dia;
-          
-          var exerciseList = document.createElement("ul");
-          exerciseList.className = "list-group list-group-flush";
-          for (var j = 0; j < ejercicios.length; j++) {
-            var exercise = createExerciseElement(ejercicios[j]);
-            exerciseList.appendChild(exercise);
-          }
-          
-          dayElement.appendChild(dayTitle);
-          dayElement.appendChild(exerciseList);
-          rutinaContainer.appendChild(dayElement);
-          
-          break;
-        }
-      }
-      
-      var diaSelector = document.getElementById("dia-selector");
-      diaSelector.value = selectedDay;
-      
-      diaSelector.addEventListener("change", function() {
-        rutinaContainer.innerHTML = "";
-        generateRoutine(diaSelector.value);
-      });
-    }
-    
-    generateRoutine();
-    
-    function toggleDarkMode() {
-      var body = document.body;
-      body.classList.toggle("dark-mode");
-    }
-    
-  </script>
+  <script src="data.js"></script>
+  
   
 </body>
 </html>
