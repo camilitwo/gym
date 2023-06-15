@@ -214,7 +214,9 @@ function mostrarRutina() {
     rutinaHTML += '<h2>' + dia.nombre + '</h2>';
     rutinaHTML += '<ul>';
     dia.ejercicios.forEach(function(ejercicio) {
-      rutinaHTML += '<li><span class="exercise-name"><strong>' + ejercicio.nombre + '</strong></span>: ' + ejercicio.series + ' series de ' + ejercicio.repeticiones + ' repeticiones';
+      rutinaHTML += '<li><strong> ' + ejercicio.nombre + '</strong>: '; 
+      rutinaHTML += ejercicio.series + ' series de ' + ejercicio.repeticiones + ' repeticiones';
+      rutinaHTML +=' <span class="exercise-name"><i class="fas fa-info-circle" onclick="mostrarExplicacion()"></i></span>';
       rutinaHTML += '</li>';
     });
     rutinaHTML += '</ul>';
@@ -236,8 +238,8 @@ function mostrarExplicacion(index) {
   var diaSeleccionado = document.getElementById("dia").value;
   var ejercicio = rutinaJSON.dias[diaSeleccionado - 1].ejercicios[index];
   Swal.fire({
-    title: "Explicación del ejercicio",
-    text: ejercicio.explicacion,
+    title: "Acerca de: "+ ejercicio.nombre,
+    text: ejercicio.explicacion ,
     icon: "info",
     popup: 'swal2-show',
     backdrop: 'swal2-backdrop-show',
