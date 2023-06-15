@@ -1,125 +1,237 @@
-var rutina = {
-    "rutina": [
-      {
-        "dia": "Lunes",
-        "ejercicios": [
-          "Sentadillas: 4 series de 8-10 repeticiones.",
-          "Peso muerto: 4 series de 8-10 repeticiones.",
-          "Zancadas: 3 series de 10 repeticiones por pierna.",
-          "Extensión de piernas: 3 series de 12 repeticiones.",
-          "Curl de piernas: 3 series de 12 repeticiones.",
-          "Elevación de talones: 3 series de 15 repeticiones."
-        ]
-      },
-      {
-        "dia": "Martes",
-        "ejercicios": [
-          "Dominadas: 4 series de 8-10 repeticiones.",
-          "Remo con barra: 4 series de 8-10 repeticiones.",
-          "Remo con mancuernas: 3 series de 10 repeticiones.",
-          "Curl de bíceps con barra: 3 series de 10-12 repeticiones.",
-          "Curl de bíceps martillo: 3 series de 10-12 repeticiones."
-        ]
-      },
-      {
-        "dia": "Miércoles",
-        "ejercicios": [
-          "Descanso o actividad de baja intensidad"
-        ]
-      },
-      {
-        "dia": "Jueves",
-        "ejercicios": [
-          "Fondos en paralelas: 3 series de 10-12 repeticiones.",
-          "Press de banca: 4 series de 8-10 repeticiones.",
-          "Press inclinado con mancuernas: 4 series de 8-10 repeticiones.",
-          "Aperturas con mancuernas: 3 series de 10 repeticiones.",
-          "Extensiones de tríceps con polea: 3 series de 10-12 repeticiones."
-        ]
-      },
-      {
-        "dia": "Viernes",
-        "ejercicios": [
-          "Plancha: 3 series de 30-60 segundos.",
-          "Crunch abdominal: 3 series de 15-20 repeticiones.",
-          "Press militar con barra: 4 series de 8-10 repeticiones.",
-          "Elevaciones laterales con mancuernas: 3 series de 10 repeticiones.",
-          "Pájaros: 3 series de 10 repeticiones.",
-          "Encogimientos de hombros: 3 series de 12 repeticiones."
-        ]
-      }
-    ]
-  };
-    
-    
-function createExerciseElement(exerciseName) {
-    var exercise = document.createElement("li");
-    exercise.className = "list-group-item";
-    
-    var label = document.createElement("label");
-    label.className = "exercise-label";
-    
-    var checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.className = "exercise-checkbox";
-    
-    label.appendChild(checkbox);
-    label.innerHTML += exerciseName;
-    
-    exercise.appendChild(label);
-    
-    checkbox.addEventListener("change", function() {
-    exercise.classList.toggle("completed", checkbox.checked);
-    });
-    
-    return exercise;
-}
 
-function generateRoutine(selectedDay) {
-    var rutinaContainer = document.getElementById("rutina-container");
-    
-    var today = new Date().toLocaleDateString('es-ES', { weekday: 'long' });
-    selectedDay = selectedDay || today;
-    
-    for (var i = 0; i < rutina.rutina.length; i++) {
-    var dia = rutina.rutina[i].dia;
-    var ejercicios = rutina.rutina[i].ejercicios;
-    
-    if (dia.toLowerCase() === selectedDay.toLowerCase()) {
-        var dayElement = document.createElement("div");
-        dayElement.className = "card";
-        
-        var dayTitle = document.createElement("div");
-        dayTitle.className = "card-header";
-        dayTitle.textContent = dia;
-        
-        var exerciseList = document.createElement("ul");
-        exerciseList.className = "list-group list-group-flush";
-        for (var j = 0; j < ejercicios.length; j++) {
-        var exercise = createExerciseElement(ejercicios[j]);
-        exerciseList.appendChild(exercise);
+    // JSON de la rutina
+    var rutinaJSON = {
+  "dias": [
+    {
+      "nombre": "Día 1: Pecho y Tríceps",
+      "ejercicios": [
+        {
+          "nombre": "Press de banca plano",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Press de banca inclinado con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Extensiones de tríceps con polea alta",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Dips en máquina asistida o dips en banco",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Press cerrado con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
         }
-        
-        dayElement.appendChild(dayTitle);
-        dayElement.appendChild(exerciseList);
-        rutinaContainer.appendChild(dayElement);
-        
-        break;
+      ]
+    },
+    {
+      "nombre": "Día 2: Piernas",
+      "ejercicios": [
+        {
+          "nombre": "Sentadillas",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Prensa de piernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Extensiones de piernas",
+          "series": 3,
+          "repeticiones": "12-15"
+        },
+        {
+          "nombre": "Zancadas con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Elevaciones de talones de pie",
+          "series": 3,
+          "repeticiones": "12-15"
+        }
+      ]
+    },
+    {
+      "nombre": "Día 3: Espalda y Bíceps",
+      "ejercicios": [
+        {
+          "nombre": "Dominadas o jalones al pecho",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Remo con barra",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Remo con mancuerna a una mano",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Curl de bíceps con barra",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Curl de martillo con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        }
+      ]
+    },
+    {
+      "nombre": "Día 4: Hombros y Trapecios",
+      "ejercicios": [
+        {
+          "nombre": "Press militar con barra",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Elevaciones laterales con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Elevaciones frontales con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Pájaros o elevaciones posteriores con mancuernas",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Encogimientos de trapecio con barra",
+          "series": 3,
+          "repeticiones": "10-12"
+        }
+      ]
+    },
+    {
+      "nombre": "Día 5: Piernas y Glúteos",
+      "ejercicios": [
+        {
+          "nombre": "Peso muerto con barra",
+          "series": 3,
+          "repeticiones": "8-10"
+        },
+        {
+          "nombre": "Sentadillas sumo con mancuerna",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Prensa de piernas inclinada",
+          "series": 3,
+          "repeticiones": "10-12"
+        },
+        {
+          "nombre": "Elevaciones de talones sentado",
+          "series": 3,
+          "repeticiones": "12-15"
+        },
+        {
+          "nombre": "Hip thrust con barra o elevaciones de cadera con banda elástica",
+          "series": 3,
+          "repeticiones": "10-12"
+        }
+      ]
     }
+  ]
+};
+
+var dietaJSON = {
+  "dias": [
+    {
+      "nombre": "Día 1",
+      "comidas": [
+        {
+          "nombre": "Desayuno",
+          "alimentos": [
+            "Huevos",
+            "Avena",
+            "Frutas"
+          ]
+        },
+        // ... Resto de las comidas del Día 1
+      ]
+    },
+    {
+      "nombre": "Día 2",
+      "comidas": [
+        // ... Comidas del Día 2
+      ]
+    },
+    // ... Resto de los días
+  ]
+};
+
+    // Obtener el día actual
+    function mostrarRutina() {
+      var diaSeleccionado = document.getElementById("dia").value;
+      var rutinaHTML = '';
+      if (diaSeleccionado >= 1 && diaSeleccionado <= rutinaJSON.dias.length) {
+        var dia = rutinaJSON.dias[diaSeleccionado - 1];
+        rutinaHTML += '<h2>' + dia.nombre + '</h2>';
+        rutinaHTML += '<ul>';
+        dia.ejercicios.forEach(function(ejercicio) {
+          rutinaHTML += '<li><strong>' + ejercicio.nombre + '</strong>: ' + ejercicio.series + ' series de ' + ejercicio.repeticiones + ' repeticiones</li>';
+        });
+        rutinaHTML += '</ul>';
+      } else {
+        rutinaHTML = '<p>No se encontró una rutina para el día seleccionado.</p>';
+      }
+      document.getElementById("rutina").innerHTML = rutinaHTML;
     }
-    
-    var diaSelector = document.getElementById("dia-selector");
-    diaSelector.value = selectedDay;
-    
-    diaSelector.addEventListener("change", function() {
-    rutinaContainer.innerHTML = "";
-    generateRoutine(diaSelector.value);
+
+    // Función para mostrar la dieta según el día seleccionado
+    function mostrarDieta() {
+      var diaSeleccionado = document.getElementById("dia").value;
+      var dietaHTML = '';
+      if (diaSeleccionado >= 1 && diaSeleccionado <= dietaJSON.dias.length) {
+        var dia = dietaJSON.dias[diaSeleccionado - 1];
+        dietaHTML += '<h2>' + dia.nombre + '</h2>';
+        dietaHTML += '<ul>';
+        dia.comidas.forEach(function(comida) {
+          dietaHTML += '<li><strong>' + comida.nombre + '</strong>: ' + comida.alimentos.join(', ') + '</li>';
+        });
+        dietaHTML += '</ul>';
+      } else {
+        dietaHTML = '<p>No se encontró una dieta para el día seleccionado.</p>';
+      }
+      document.getElementById("dieta").innerHTML = dietaHTML;
+    }
+
+    // Mostrar las opciones del combobox
+    var combobox = document.getElementById("dia");
+    rutinaJSON.dias.forEach(function(dia, index) {
+      var option = document.createElement("option");
+      option.value = index + 1;
+      option.text = dia.nombre;
+      combobox.appendChild(option);
     });
-}
 
-generateRoutine();
+    // Obtener el día actual y seleccionarlo en el combobox
+    var diaActual = new Date().getDay(); // 0: Domingo, 1: Lunes, ..., 6: Sábado
+    if (diaActual >= 1 && diaActual <= rutinaJSON.dias.length) {
+      combobox.value = diaActual;
+    }
 
-function toggleDarkMode() {
-    var body = document.body;
-    body.classList.toggle("dark-mode");
-}
+    // Mostrar la rutina y la dieta inicial al cargar la página
+    mostrarRutina();
+    mostrarDieta();
