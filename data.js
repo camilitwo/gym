@@ -188,21 +188,190 @@ var dietaJSON = {
         {
           "nombre": "Desayuno",
           "alimentos": [
-            "Huevos",
-            "Avena",
-            "Frutas"
-          ]
+            "Omelette de claras de huevo con espinacas y champiñones",
+            "1 rebanada de pan integral",
+            "1 porción de fruta fresca"
+          ],
+          "calorias": 400
         },
-        // ... Resto de las comidas del Día 1
+        {
+          "nombre": "Almuerzo",
+          "alimentos": [
+            "Ensalada de pollo a la parrilla con lechuga, tomate, pepino y aderezo bajo en grasa",
+            "1/2 taza de arroz integral",
+            "1 porción de verduras al vapor"
+          ],
+          "calorias": 450
+        },
+        {
+          "nombre": "Merienda",
+          "alimentos": [
+            "Yogur griego bajo en grasa con nueces y una pizca de canela"
+          ],
+          "calorias": 200
+        },
+        {
+          "nombre": "Cena",
+          "alimentos": [
+            "Salmón a la parrilla con limón",
+            "1/2 taza de quinua",
+            "1 porción de vegetales asados"
+          ],
+          "calorias": 380
+        }
       ]
     },
     {
       "nombre": "Día 2",
       "comidas": [
-        // ... Comidas del Día 2
+        {
+          "nombre": "Desayuno",
+          "alimentos": [
+            "Batido de proteínas con leche descremada, espinacas, plátano y mantequilla de maní",
+            "1 porción de fruta fresca"
+          ],
+          "calorias": 350
+        },
+        {
+          "nombre": "Almuerzo",
+          "alimentos": [
+            "Pollo al horno con hierbas y especias",
+            "Ensalada mixta con vegetales variados y vinagreta baja en grasa",
+            "1 porción de verduras al vapor"
+          ],
+          "calorias": 400
+        },
+        {
+          "nombre": "Merienda",
+          "alimentos": [
+            "Barra de proteínas"
+          ],
+          "calorias": 180
+        },
+        {
+          "nombre": "Cena",
+          "alimentos": [
+            "Ensalada de salmón ahumado con espinacas, aguacate y tomate",
+            "1 rebanada de pan integral"
+          ],
+          "calorias": 320
+        }
       ]
     },
-    // ... Resto de los días
+    {
+      "nombre": "Día 3",
+      "comidas": [
+        {
+          "nombre": "Desayuno",
+          "alimentos": [
+            "Avena cocida con leche descremada, canela y nueces",
+            "1 porción de fruta fresca"
+          ],
+          "calorias": 350
+        },
+        {
+          "nombre": "Almuerzo",
+          "alimentos": [
+            "Pechuga de pollo a la plancha con especias",
+            "1/2 taza de quinua",
+            "1 porción de verduras al vapor"
+          ],
+          "calorias": 400
+        },
+        {
+          "nombre": "Merienda",
+          "alimentos": [
+            "Rodajas de pepino con hummus"
+          ],
+          "calorias": 150
+        },
+        {
+          "nombre": "Cena",
+          "alimentos": [
+            "Ensalada de atún con lechuga, tomate, cebolla morada y aceite de oliva",
+            "1/2 taza de arroz integral"
+          ],
+          "calorias": 380
+        }
+      ]
+    },
+    {
+      "nombre": "Día 4",
+      "comidas": [
+        {
+          "nombre": "Desayuno",
+          "alimentos": [
+            "Tortilla de claras de huevo con espinacas y tomate",
+            "1 rebanada de pan integral",
+            "1 porción de fruta fresca"
+          ],
+          "calorias": 400
+        },
+        {
+          "nombre": "Almuerzo",
+          "alimentos": [
+            "Ensalada de salmón a la parrilla con espinacas, aguacate y aderezo bajo en grasa",
+            "1/2 taza de quinua",
+            "1 porción de verduras al vapor"
+          ],
+          "calorias": 450
+        },
+        {
+          "nombre": "Merienda",
+          "alimentos": [
+            "Batido de proteínas con leche descremada y frutas mixtas"
+          ],
+          "calorias": 300
+        },
+        {
+          "nombre": "Cena",
+          "alimentos": [
+            "Pechuga de pollo al horno con limón y hierbas",
+            "1/2 taza de arroz integral",
+            "1 porción de vegetales asados"
+          ],
+          "calorias": 380
+        }
+      ]
+    },
+    {
+      "nombre": "Día 5",
+      "comidas": [
+        {
+          "nombre": "Desayuno",
+          "alimentos": [
+            "Panqueques de avena con claras de huevo y plátano",
+            "1 porción de fruta fresca"
+          ],
+          "calorias": 380
+        },
+        {
+          "nombre": "Almuerzo",
+          "alimentos": [
+            "Ensalada de camarones con lechuga, tomate, pepino y aderezo bajo en grasa",
+            "1/2 taza de quinua",
+            "1 porción de verduras al vapor"
+          ],
+          "calorias": 420
+        },
+        {
+          "nombre": "Merienda",
+          "alimentos": [
+            "Yogur griego bajo en grasa con semillas de chía y frutas mixtas"
+          ],
+          "calorias": 200
+        },
+        {
+          "nombre": "Cena",
+          "alimentos": [
+            "Filete de pescado a la parrilla con limón y especias",
+            "Ensalada de espinacas, aguacate y tomate",
+            "1 rebanada de pan integral"
+          ],
+          "calorias": 350
+        }
+      ]
+    }
   ]
 };
 
@@ -231,6 +400,8 @@ function mostrarRutina() {
       mostrarExplicacion(index);
     });
   });
+
+  mostrarDieta();
 }
 
 
@@ -267,5 +438,29 @@ if (diaActual >= 1 && diaActual <= rutinaJSON.dias.length) {
 // Mostrar la rutina inicial al cargar la página
 mostrarRutina();
 
+
 // Evento de cambio de día en el combobox
 combobox.addEventListener('change', mostrarRutina);
+
+function mostrarDieta() {
+  var diaSeleccionado = document.getElementById("dia").value;
+  var dietaHTML = '';
+  if (diaSeleccionado >= 1 && diaSeleccionado <= dietaJSON.dias.length) {
+    var dia = dietaJSON.dias[diaSeleccionado - 1];
+    dietaHTML += '<ul>';
+    dia.comidas.forEach(function(comida) {
+      dietaHTML += '<li><strong>' + comida.nombre + '</strong>: ';
+      dietaHTML += comida.alimentos.join(', ');
+      //añadir atributo caloria del json
+      dietaHTML += '.  <span id="calorias"><strong>Calorias</strong>: ' + comida.calorias + 'kcal</span>';
+      dietaHTML += '</li>';
+
+    });
+    dietaHTML += '</ul>';
+  } else {
+    dietaHTML = '<p>No se encontró una dieta para el día seleccionado.</p>';
+  }
+  document.getElementById("dieta").innerHTML = dietaHTML;
+
+
+}

@@ -19,6 +19,8 @@ body {
 
   #rutina h2 {
     margin-bottom: 15px;
+    font-family: 'Kanit', cursive;
+    margin-bottom: 30px;
   }
 
   #rutina ul {
@@ -123,4 +125,30 @@ footer {
 i.fas.fa-info-circle {
   cursor: pointer;
   color: blue;
+}
+
+#dieta {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+#dieta h2 {
+  margin-bottom: 15px;
+}
+
+#dieta ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#dieta li {
+  margin-bottom: 10px;
+}
+
+#calorias {
+  font-family: 'Kanit', cursive;
+  color: dimgray;
 }
