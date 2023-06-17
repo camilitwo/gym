@@ -149,6 +149,8 @@ i.fas.fa-info-circle {
 }
 
 #calorias {
-  font-family: 'Kanit', cursive;
+  font-family: 'Kanit', sans-serif, cursive;
+  font-size: 15px;
   color: dimgray;
+   
 }

@@ -452,7 +452,7 @@ function mostrarDieta() {
       dietaHTML += '<li><strong>' + comida.nombre + '</strong>: ';
       dietaHTML += comida.alimentos.join(', ');
       //añadir atributo caloria del json
-      dietaHTML += '.  <span id="calorias"><strong>Calorias</strong>: ' + comida.calorias + 'kcal</span>';
+      dietaHTML += '.<br><span id="calorias"><strong>Calorias</strong>: ' + comida.calorias + 'kcal</span>';
       dietaHTML += '</li>';
 
     });
